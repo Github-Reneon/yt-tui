@@ -2,10 +2,12 @@ module github.com/Github-Reneon/yt-tui
 
 go 1.17
 
-require github.com/adrg/youtube-go v0.0.0-20150113112655-e088d34f7726
+require (
+	github.com/adrg/youtube-go v0.0.0-20150113112655-e088d34f7726
+	github.com/charmbracelet/bubbletea v0.20.0
+)
 
 require (
-	github.com/charmbracelet/bubbletea v0.20.0 // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
