@@ -3,5 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("hello world")
+	test := []int{1, 2, 3}
+
+	test = append(test, 5)
+
+	fmt.Println(test)
 }
