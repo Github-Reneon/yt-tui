@@ -6,12 +6,15 @@ import (
 	testPackage "github.com/Github-Reneon/yt-tui/src/api_manager"
 )
 
-func TestUrlCreation(t *testing.T) {
-	videos, err := testPackage.CreateUrl("test", 1, 10)
-
+func TestVideoSearch(t *testing.T) {
+	test, err := testPackage.SearchTitle("test")
 	if err != nil {
-		t.Errorf(err)
+		t.Errorf("Error: %v", err)
+	}
+
+	if test != nil {
+		t.Logf("Pass: %v", len(test))
 	} else {
-		t.Logf(videos.Title)
+		t.Errorf("Error: test is nil")
 	}
 }
