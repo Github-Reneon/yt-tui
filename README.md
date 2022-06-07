@@ -1,3 +1,5 @@
+# yt-tui
+
 ## YouTube parsing portion
 ### Functions
 * SearchTitles(string search) returns list of titles
