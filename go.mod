@@ -3,7 +3,6 @@ module github.com/Github-Reneon/yt-tui
 go 1.17
 
 require (
-	github.com/adrg/youtube-go v0.0.0-20150113112655-e088d34f7726
 	github.com/charmbracelet/bubbletea v0.20.0
 	github.com/raitonoberu/ytsearch v0.2.0
 )
