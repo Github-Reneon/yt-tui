@@ -10,7 +10,6 @@ import (
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
-
 		switch msg.String() {
 		case "ctrl+c", "q":
 			return m, tea.Quit
@@ -19,7 +18,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.cursor--
 			}
 		case "down":
-			if m.cursor < len(m.choices) {
+			if m.cursor < len(m.choices)-1 {
 				m.cursor++
 			}
 		case "enter":
