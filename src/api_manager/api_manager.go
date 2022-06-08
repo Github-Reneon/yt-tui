@@ -13,19 +13,10 @@ type Video struct {
 	Link  string
 }
 
-func SearchTitle(title string) ([]Video, error) {
-
+func ParseInfo(info *ytsearch.SearchResult) *[]Video {
 	var ret []Video
 
-	searchInfo := ytsearch.Search("test")
-
-	result, err := searchInfo.Next()
-
-	if err != nil {
-		return nil, err
-	}
-
-	for video := range result.Videos {
+	for _, video := range info.Videos {
 
 		jsontr, _ := json.Marshal(video)
 
@@ -38,9 +29,24 @@ func SearchTitle(title string) ([]Video, error) {
 			Id:    fmt.Sprint(mappedJson["id"]),
 			Link:  fmt.Sprint(mappedJson["url"]),
 		}
-		ret = append(ret, videoData)
 
+		ret = append(ret, videoData)
 	}
+
+	return &ret
+}
+
+func SearchTitle(title string) (*[]Video, error) {
+
+	searchInfo := ytsearch.Search(title)
+
+	result, err := searchInfo.Next()
+
+	if err != nil {
+		return nil, err
+	}
+
+	ret := ParseInfo(result)
 
 	return ret, nil
 }

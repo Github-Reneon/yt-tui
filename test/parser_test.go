@@ -16,13 +16,13 @@ func TestCanSearchTitles(t *testing.T) {
 	}
 
 	// Length Check
-	if len(ret) != 10 {
-		t.Errorf("Ret pass return %v number of results", len(ret))
+	if len(*ret) != 10 {
+		t.Errorf("Ret pass return %v number of results", len(*ret))
 	} else {
-		t.Logf("Ret pass return %v number of results", len(ret))
+		t.Logf("Ret pass return %v number of results", len(*ret))
 	}
 
-	for _, title := range ret {
+	for _, title := range *ret {
 		if title != "" {
 			t.Logf("Title of %v returned", title)
 		} else {
@@ -40,13 +40,13 @@ func TestCanSearchLinks(t *testing.T) {
 	}
 
 	// Check ret length
-	if len(ret) > 0 {
-		t.Logf("SearchLinks pass return %v number of results", len(ret))
+	if len(*ret) > 0 {
+		t.Logf("SearchLinks pass return %v number of results", len(*ret))
 	} else {
-		t.Errorf("SearchLinks pass return %v number of results", len(ret))
+		t.Errorf("SearchLinks pass return %v number of results", len(*ret))
 	}
 
-	for _, link := range ret {
+	for _, link := range *ret {
 		if link != "" {
 			t.Logf("SearchLinks pass link returned %v", link)
 			_, urlErr := url.ParseRequestURI(link)
@@ -72,17 +72,19 @@ func TestCanSearchVideoData(t *testing.T) {
 		t.Fail()
 	}
 
+	test := *ret
+
 	// ID check
-	if ret[0].Id > "" {
-		t.Logf("Id pass return %v", ret[0].Id)
+	if test[0].Id > "" {
+		t.Logf("Id pass return %v", test[0].Id)
 	} else {
-		t.Errorf("Id error return %v", ret[0].Id)
+		t.Errorf("Id error return %v", test[0].Id)
 	}
 
 	// Title check
-	if ret[0].Title != "" {
-		t.Logf("Title pass return %v", ret[0].Title)
+	if test[0].Title != "" {
+		t.Logf("Title pass return %v", test[0].Title)
 	} else {
-		t.Errorf("Title error return %v", ret[0].Title)
+		t.Errorf("Title error return %v", test[0].Title)
 	}
 }
