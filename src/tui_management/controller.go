@@ -1,6 +1,9 @@
 package tui_management
 
 import (
+	"fmt"
+	"os"
+
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -34,4 +37,14 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 
 	return m, nil
+}
+
+func Start() {
+	p := tea.NewProgram(initialModel())
+
+	if err := p.Start(); err != nil {
+		fmt.Printf("err: %v", err)
+		os.Exit(1)
+	}
+
 }
