@@ -39,7 +39,6 @@ func ParseInfo(info *ytsearch.SearchResult) *[]Video {
 func SearchTitle(title string) (*[]Video, error) {
 
 	searchInfo := ytsearch.Search(title)
-
 	result, err := searchInfo.Next()
 
 	if err != nil {

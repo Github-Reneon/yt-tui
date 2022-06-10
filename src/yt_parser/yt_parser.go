@@ -21,7 +21,6 @@ func SearchTitles(search string, numOfResults int) (*[]string, error) {
 	}
 
 	return &ret, nil
-	//	for _, video := range
 }
 
 func SearchLinks(search string, numOfResults int) (*[]string, error) {
@@ -38,6 +37,25 @@ func SearchLinks(search string, numOfResults int) (*[]string, error) {
 			break
 		}
 		ret = append(ret, video.Link)
+	}
+
+	return &ret, nil
+}
+
+func SearchIds(search string, numOfResults int) (*[]string, error) {
+	videos, err := youtube.SearchTitle(search)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var ret []string
+
+	for i, video := range *videos {
+		if i == 10 {
+			break
+		}
+		ret = append(ret, video.Id)
 	}
 
 	return &ret, nil

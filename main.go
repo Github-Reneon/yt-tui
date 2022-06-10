@@ -1,11 +1,9 @@
 package main
 
-import "fmt"
+import (
+	tui "github.com/Github-Reneon/yt-tui/src/tui_management"
+)
 
 func main() {
-	test := []int{1, 2, 3}
-
-	test = append(test, 5)
-
-	fmt.Println(test)
+	tui.Start()
 }
