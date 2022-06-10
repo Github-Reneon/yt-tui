@@ -7,6 +7,34 @@ import (
 func (m Model) View() string {
 	s := ""
 
+	switch m.state {
+	case "HOME":
+		s = HomeView(&m)
+	case "SEARCH":
+		s = SearchView(&m)
+	default:
+		s = HomeView(&m)
+	}
+
+	return s
+}
+
+func SearchView(m *Model) string {
+	s := ""
+
+	s = fmt.Sprintf("YouTube video search Title: %s",
+		m.textInput.View())
+
+	s += "\n"
+
+	s += "Press ctrl-c to go back to home.\n"
+
+	return s
+}
+
+func HomeView(m *Model) string {
+	s := ""
+
 	if m.uploaded {
 		s += "Uploaded!\n"
 	} else {
@@ -20,12 +48,7 @@ func (m Model) View() string {
 			cursor = ">"
 		}
 		if i != len(m.choices)-1 {
-			checked := " "
-
-			if _, ok := m.selected[i]; ok {
-				checked = "x"
-			}
-			s += fmt.Sprintf("%s [%s] %s\n", cursor, checked, choice)
+			s += fmt.Sprintf("%s %s\n", cursor, choice)
 		} else {
 			s += fmt.Sprintf("%s %s\n", cursor, choice)
 		}
